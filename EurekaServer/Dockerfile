@@ -1,4 +1,4 @@
-FROM openjdk:17
+FROM eclipse-temurin:21-jdk
 WORKDIR /app
 COPY target/*.jar eureka-server.jar
 EXPOSE 8761

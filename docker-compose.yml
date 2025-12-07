@@ -1,0 +1,37 @@
+services:
+
+  eureka-server:
+    build: ./EurekaServer
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    restart: unless-stopped
+
+  service-a:
+    build: ./Userservice
+    container_name: service-a
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka-server
+    restart: unless-stopped
+
+  service-b:
+    build: ./service-b
+    container_name: service-b
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eureka-server
+    restart: unless-stopped
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+      - service-a
+      - service-b
+    restart: unless-stopped

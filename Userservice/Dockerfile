@@ -1,5 +1,5 @@
-FROM openjdk:17
+FROM eclipse-temurin:21-jdk
 WORKDIR /app
-COPY target/*.jar service-a.jar
-EXPOSE 8081
-ENTRYPOINT ["java", "-jar", "service-a.jar"]
+COPY target/*.jar Userservice.jar
+ENTRYPOINT ["java", "-jar", "Userservice.jar"]
+
